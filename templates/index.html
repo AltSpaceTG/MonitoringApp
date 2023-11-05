@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Log Monitoring</title>
+    <script src="https://cdn.staticfile.org/echarts/5.0.0/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+</head>
+<body>
+    <h1>Web Log Monitoring</h1>
+    <form action="/" method="get">
+        Start Date: <input type="date" name="start_date">
+        End Date: <input type="date" name="end_date">
+        <input type="submit" value="Filter">
+    </form>
+
+    <div class="container">
+        <div class="half chart-container">
+            {{ chart_html | safe }}
+        </div>
+        <div class="half">
+            <table>
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Time</th>
+                        <th>URL</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data %}
+                    <tr>
+                        <td>{{ row.IP }}</td>
+                        <td>{{ row.Time }}</td>
+                        <td>{{ row.URL }}</td>
+                        <td>{{ row.Staus }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
